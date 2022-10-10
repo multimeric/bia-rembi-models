@@ -79,6 +79,7 @@ class ImageAcquisitionParameters(FreeText):
 class ImageAcquisition(MetadataGroup):
 
     _template_label = "Image Acquisition"
+    _atom = False
     
     imaging_method: ImagingMethod
     imaging_instrument: ImagingInstrument

@@ -17,5 +17,7 @@ class ImageAnalysisOverview(FreeText):
 
 class ImageAnalysis(MetadataGroup):
 
+    _template_label = "Image Analysis"
+
     analysis_overview: ImageAnalysisOverview
         

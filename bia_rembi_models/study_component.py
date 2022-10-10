@@ -1,5 +1,9 @@
 from typing import List
 
+from .sample import Biosample
+from .specimen import Specimen
+from .acquisition import ImageAcquisition
+
 from . import FreeText, MetadataGroup
 
 
@@ -33,3 +37,7 @@ class StudyComponent(MetadataGroup):
     
     name: Name
     description: Description
+
+    # biosample: List[Biosample] = []
+    # specimen: List[Specimen] = []
+    # acquisition: List[ImageAcquisition] = []

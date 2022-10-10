@@ -34,6 +34,7 @@ class Specimen(BaseModel):
     """How the sample was grown or cultured and prepared for imaging."""
 
     _template_label = "Specimen"
+    _atom = False
 
     # biosample: Biosample
     sample_preparation: SamplePreparationProtocol

@@ -111,6 +111,7 @@ class ExperimentalVariable(FreeText):
 class Biosample(MetadataGroup):
 
     _template_label = "Biosample"
+    _atom = False
 
     organism: Organism
     biological_entity: BiologicalEntity
