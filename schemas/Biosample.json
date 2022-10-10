@@ -1,0 +1,70 @@
+{
+  "title": "Biosample",
+  "type": "object",
+  "properties": {
+    "organism": {
+      "$ref": "#/definitions/Organism"
+    },
+    "biological_entity": {
+      "title": "Biological Entity",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "intrinsic_variables": {
+      "title": "Intrinsic Variables",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extrinsic_variables": {
+      "title": "Extrinsic Variables",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "experimental_variables": {
+      "title": "Experimental Variables",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "organism",
+    "biological_entity"
+  ],
+  "definitions": {
+    "Organism": {
+      "title": "Organism",
+      "description": "Species.",
+      "type": "object",
+      "properties": {
+        "scientific_name": {
+          "title": "Scientific Name",
+          "type": "string"
+        },
+        "common_name": {
+          "title": "Common Name",
+          "type": "string"
+        },
+        "ncbi_taxon": {
+          "title": "Ncbi Taxon",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scientific_name",
+        "ncbi_taxon"
+      ]
+    }
+  }
+}

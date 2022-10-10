@@ -1,0 +1,18 @@
+{
+  "title": "Specimen",
+  "description": "How the sample was grown or cultured and prepared for imaging.",
+  "type": "object",
+  "properties": {
+    "sample_preparation": {
+      "title": "Sample Preparation",
+      "type": "string"
+    },
+    "growth_protocol": {
+      "title": "Growth Protocol",
+      "type": "string"
+    }
+  },
+  "required": [
+    "sample_preparation"
+  ]
+}

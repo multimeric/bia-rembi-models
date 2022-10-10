@@ -1,0 +1,13 @@
+{
+  "title": "ImageAnalysis",
+  "type": "object",
+  "properties": {
+    "analysis_overview": {
+      "title": "Analysis Overview",
+      "type": "string"
+    }
+  },
+  "required": [
+    "analysis_overview"
+  ]
+}

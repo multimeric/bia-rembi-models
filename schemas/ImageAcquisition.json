@@ -1,0 +1,48 @@
+{
+  "title": "ImageAcquisition",
+  "type": "object",
+  "properties": {
+    "imaging_method": {
+      "$ref": "#/definitions/ImagingMethod"
+    },
+    "imaging_instrument": {
+      "title": "Imaging Instrument",
+      "type": "string"
+    },
+    "image_acquisition_parameters": {
+      "title": "Image Acquisition Parameters",
+      "type": "string"
+    }
+  },
+  "required": [
+    "imaging_method",
+    "imaging_instrument",
+    "image_acquisition_parameters"
+  ],
+  "definitions": {
+    "ImagingMethod": {
+      "title": "ImagingMethod",
+      "description": "What method was used to capture images.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "ontology_name": {
+          "title": "Ontology Name",
+          "type": "string"
+        },
+        "ontology_id": {
+          "title": "Ontology Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "ontology_name",
+        "ontology_id"
+      ]
+    }
+  }
+}

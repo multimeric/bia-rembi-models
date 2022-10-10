@@ -1,0 +1,233 @@
+{
+  "title": "Study",
+  "description": "General study information",
+  "type": "object",
+  "properties": {
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "keywords": {
+      "title": "Keywords",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authors": {
+      "title": "Authors",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Author"
+      }
+    },
+    "license": {
+      "$ref": "#/definitions/License"
+    },
+    "funding": {
+      "$ref": "#/definitions/Funding"
+    },
+    "publications": {
+      "title": "Publications",
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Publication"
+      }
+    },
+    "links": {
+      "title": "Links",
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Link"
+      }
+    },
+    "acknowledgements": {
+      "title": "Acknowledgements",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "keywords",
+    "authors"
+  ],
+  "definitions": {
+    "OrganisationInfo": {
+      "title": "OrganisationInfo",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "OrganisationURL": {
+      "title": "OrganisationURL",
+      "description": "URL to a public registry containing organisation information. ROR recommended",
+      "type": "object",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "Author": {
+      "title": "Author",
+      "type": "object",
+      "properties": {
+        "last_name": {
+          "title": "Last Name",
+          "type": "string"
+        },
+        "first_name": {
+          "title": "First Name",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Orcid",
+          "type": "string"
+        },
+        "affiliation": {
+          "title": "Affiliation",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrganisationInfo"
+            },
+            {
+              "$ref": "#/definitions/OrganisationURL"
+            }
+          ]
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_name",
+        "first_name",
+        "affiliation"
+      ]
+    },
+    "License": {
+      "title": "License",
+      "type": "object",
+      "properties": {
+        "help_text": {
+          "title": "Help Text",
+          "default": "The license under which the data are available.",
+          "type": "string"
+        }
+      }
+    },
+    "GrantReference": {
+      "title": "GrantReference",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "funder": {
+          "title": "Funder",
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "funder"
+      ]
+    },
+    "Funding": {
+      "title": "Funding",
+      "type": "object",
+      "properties": {
+        "funding_statement": {
+          "title": "Funding Statement",
+          "type": "string"
+        },
+        "grant_references": {
+          "title": "Grant References",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GrantReference"
+          }
+        }
+      },
+      "required": [
+        "funding_statement"
+      ]
+    },
+    "Publication": {
+      "title": "Publication",
+      "type": "object",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "authors": {
+          "title": "Authors",
+          "type": "string"
+        },
+        "doi": {
+          "title": "Doi",
+          "type": "string"
+        },
+        "year": {
+          "title": "Year",
+          "type": "string"
+        },
+        "pubmed_id": {
+          "title": "Pubmed Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "authors"
+      ]
+    },
+    "Link": {
+      "title": "Link",
+      "type": "object",
+      "properties": {
+        "link_url": {
+          "title": "Link Url",
+          "type": "string"
+        },
+        "link_description": {
+          "title": "Link Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "link_url"
+      ]
+    }
+  }
+}
