@@ -30,6 +30,8 @@ class TransformationMatrix(FreeText):
 class ImageCorrelation(BaseModel):
     """How images from the same correlative study are linked"""
 
+    _template_label = "Image Correlation"
+
     spatial_and_temporal_alignment: SpatialAndTemporalAlignment
     fiducials_used: FiducialsUsed
     transformation_matrix: TransformationMatrix
