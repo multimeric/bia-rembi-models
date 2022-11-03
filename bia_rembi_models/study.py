@@ -125,7 +125,7 @@ class Publication(MetadataGroup):
     _template_label = "Publication"
 
     title: PubTitle
-    authors: PubAuthors
+    authors: Optional[PubAuthors]
     doi: Optional[DOI]
     year: Optional[PublicationYear]
     pubmed_id: Optional[PubmedID]
@@ -259,7 +259,7 @@ class Study(MetadataGroup):
     authors: List[Author]
     license: Optional[License]
     funding: Optional[Funding]
-    publications: List[Publication] = []
+    publications: Optional[List[Publication]] = []
     links: Optional[List[Link]] = []
     acknowledgements: Optional[Acknowledgements]
 
