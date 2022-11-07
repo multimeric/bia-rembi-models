@@ -87,6 +87,7 @@ class Person(MetadataGroup):
     affiliation: Union[OrganisationInfo, OrganisationURL]
     role: Optional[Role]
 
+
 class Author(Person): pass
 
 
@@ -242,11 +243,19 @@ class LinkDescription(FreeText):
         "Project website"
     ]
 
+
+class LinkType(FreeText):
+    """The type of the link."""
+
+    _template_label = "Type"
+
+
 class Link(MetadataGroup):
 
     _template_label = "Link"
 
     link_url: LinkURL
+    link_type: Optional[LinkType]
     link_description: Optional[LinkDescription]
 
 
