@@ -164,7 +164,7 @@ class Funding(MetadataGroup):
     _template_label = "Funding"
 
     funding_statement: FundingStatement
-    grant_references: List[GrantReference] = []
+    grant_references: Optional[List[GrantReference]] = []
 
 
 class License(MetadataGroup):
