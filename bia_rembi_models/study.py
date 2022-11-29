@@ -166,15 +166,32 @@ class Funding(MetadataGroup):
     _template_label = "Funding"
 
     funding_statement: FundingStatement
-    grant_references: List[GrantReference] = []
+    grant_references: Optional[List[GrantReference]] = []
+
+
+class LicenseName(FreeText):
+    """The name of the license under which data will be available."""
+
+    _template_label = "Name"
+    _template_hint = "Leave blank"
+
+
+class LicenseURL(FreeText):
+    """URL to the license under which data will be available."""
+
+    _template_label = "URL"
+    _template_hint = "Leave blank"
 
 
 class License(MetadataGroup):
     """The license under which the data are available."""
 
-    _atom = True
+    # _atom = True
     _template_label = "License"
     _template_hint = "Leave blank"
+
+    license_name: LicenseName
+    licenseURL: LicenseURL
 
 
 class LicenseCC0(License):
