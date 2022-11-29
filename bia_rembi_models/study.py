@@ -22,6 +22,8 @@ class Organisation(MetadataGroup):
 
 class OrganisationInfo(Organisation):
 
+    _template_label = "Organisation"
+
     name: OrgName
     address: Optional[OrgAddress]
 
@@ -42,9 +44,9 @@ class LastName(FreeText):
     _template_label = "Last Name"
 
 class EmailAddress(FreeText):
-    """Author mail address."""
+    """Author e-mail address."""
 
-    _template_label = "Email"
+    _template_label = "E-mail"
 
 class Orcid(FreeText):
     """Author ORCID ID."""
@@ -168,11 +170,11 @@ class Funding(MetadataGroup):
 
 
 class License(MetadataGroup):
+    """The license under which the data are available."""
 
     _atom = True
     _template_label = "License"
     _template_hint = "Leave blank"
-    help_text = "The license under which the data are available."
 
 
 class LicenseCC0(License):
