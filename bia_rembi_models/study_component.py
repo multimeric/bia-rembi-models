@@ -4,7 +4,7 @@ from .sample import Biosample
 from .specimen import Specimen
 from .acquisition import ImageAcquisition
 
-from . import FreeText, MetadataGroup
+from . import FreeText, MetadataGroup, _version_l
 
 
 class Name(FreeText):
@@ -37,6 +37,7 @@ class StudyComponent(MetadataGroup):
     
     name: Name
     description: Description
+    rembi_version: _version_l
 
     # biosample: List[Biosample] = []
     # specimen: List[Specimen] = []
