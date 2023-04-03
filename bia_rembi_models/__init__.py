@@ -4,6 +4,9 @@ from typing import Literal, get_args
 class MetadataGroup(BaseModel):
     _atom = False
 
+    def __hash__(self):
+        return hash((type(self),) + tuple(self.__dict__.values()))
+
 
 class FreeText(str):
     _help_description = "Free text"
