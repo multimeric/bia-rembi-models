@@ -1,5 +1,7 @@
 from . import FreeText, MetadataGroup
 from typing import List, Literal, Union, Optional
+from bia_rembi_models import _version_l
+from datetime import date
 
 
 class OrgName(FreeText):
@@ -64,14 +66,14 @@ class Role(FreeText):
 class URL(FreeText):
     """URL"""
 
-    _template_label = "ROR ID"
+    _template_label = "URL"
 
 
 class OrganisationURL(Organisation):
     """URL to a public registry containing organisation information. ROR recommended"""
     url: URL
 
-    _template_label = "ROR ID"
+    _template_label = "ROR_ID"
 
     _examples = [
         "https://ror.org/02catss52" #EBI
@@ -166,32 +168,15 @@ class Funding(MetadataGroup):
     _template_label = "Funding"
 
     funding_statement: FundingStatement
-    grant_references: Optional[List[GrantReference]] = []
-
-
-class LicenseName(FreeText):
-    """The name of the license under which data will be available."""
-
-    _template_label = "Name"
-    _template_hint = "Leave blank"
-
-
-class LicenseURL(FreeText):
-    """URL to the license under which data will be available."""
-
-    _template_label = "URL"
-    _template_hint = "Leave blank"
+    grant_references: List[GrantReference] = []
 
 
 class License(MetadataGroup):
     """The license under which the data are available."""
 
-    # _atom = True
+    _atom = True
     _template_label = "License"
     _template_hint = "Leave blank"
-
-    license_name: LicenseName
-    licenseURL: LicenseURL
 
 
 class LicenseCC0(License):
@@ -222,6 +207,13 @@ class Description(FreeText):
 
     _template_hint = "Overall description of the dataset, can be a publication abstract."
     _template_label = "Description"
+
+class PrivateUntilDate(date):
+    """Date in the YYYY-mm-dd format. After this date the submission stops being private and you will only be able to add new files to the submission, not remove exiting ones."""
+
+    _template_hint = "Day in the YYYY-mm-dd format by which the submission will be private."
+    _template_label = "Private Until"
+    _atom = True
 
 
 class Keyword(FreeText):
@@ -283,6 +275,7 @@ class Study(MetadataGroup):
 
     title: Title
     description: Description
+    private_until_date: PrivateUntilDate
     keywords: List[Keyword]
     authors: List[Author]
     license: Optional[License]
@@ -290,7 +283,8 @@ class Study(MetadataGroup):
     publications: Optional[List[Publication]] = []
     links: Optional[List[Link]] = []
     acknowledgements: Optional[Acknowledgements]
-
+    rembi_version: _version_l
+    
     _attribute_validation_text = {
         'title': 'Unicode; Minimum length: 25 characters',
         'description': 'Unicode; Minimum length: 25 characters'

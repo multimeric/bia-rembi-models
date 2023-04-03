@@ -20,7 +20,7 @@ class OntologyName(FreeText):
     """The name of the ontology."""
 
     _template_label = "Ontology Name"
-    _template_hint = "Leave blank if not known"
+    _template_hint = "e.g. Biological Imaging Methods Ontology (FBbi) - Leave blank if not known"
 
     _examples = [
         "Biological Imaging Methods Ontology (FBbi)"
@@ -31,7 +31,7 @@ class OntologyTermId(FreeText):
     """The URI identifier for the ontology value."""
 
     _template_label = "Ontology Term ID"
-    _template_hint = "Leave blank if not known"
+    _template_hint = "e.g. http://purl.obolibrary.org/obo/FBbi_00000243 - Leave blank if not known"
 
     _examples = [
         "http://purl.obolibrary.org/obo/FBbi_00000243", # bright-field microscopy
@@ -80,7 +80,7 @@ class ImageAcquisition(MetadataGroup):
 
     _template_label = "Image Acquisition"
     _atom = False
-
+    
     imaging_method: ImagingMethod
     imaging_instrument: ImagingInstrument
     image_acquisition_parameters: ImageAcquisitionParameters
