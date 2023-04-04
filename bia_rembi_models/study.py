@@ -71,6 +71,7 @@ class URL(FreeText):
 
 class OrganisationURL(Organisation):
     """URL to a public registry containing organisation information. ROR recommended"""
+    name: OrgName
     url: URL
 
     _template_label = "ROR_ID"
@@ -88,7 +89,9 @@ class Person(MetadataGroup):
     first_name: FirstName
     email: Optional[EmailAddress]
     orcid: Optional[Orcid]
-    affiliation: Union[OrganisationInfo, OrganisationURL]
+    # order matters
+    # an OrganisationURL object can be validated by OrganisationInfo 
+    affiliation: Union[OrganisationURL, OrganisationInfo]
     role: Optional[Role]
 
 
