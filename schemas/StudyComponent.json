@@ -1,0 +1,26 @@
+{
+  "title": "StudyComponent",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "rembi_version": {
+      "title": "Rembi Version",
+      "enum": [
+        "1.5"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "rembi_version"
+  ]
+}

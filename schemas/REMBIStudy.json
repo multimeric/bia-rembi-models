@@ -1,0 +1,696 @@
+{
+  "title": "REMBIStudy",
+  "type": "object",
+  "properties": {
+    "study": {
+      "$ref": "#/definitions/Study"
+    },
+    "study_components": {
+      "title": "Study Components",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/StudyComponent"
+      }
+    },
+    "sample": {
+      "title": "Sample",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Biosample"
+      }
+    },
+    "specimen": {
+      "title": "Specimen",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Specimen"
+      }
+    },
+    "image_acquisition": {
+      "title": "Image Acquisition",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ImageAcquisition"
+      }
+    },
+    "image_correlation": {
+      "$ref": "#/definitions/ImageCorrelation"
+    },
+    "image_analysis": {
+      "$ref": "#/definitions/ImageAnalysis"
+    },
+    "annotations": {
+      "$ref": "#/definitions/Annotations"
+    }
+  },
+  "required": [
+    "study",
+    "study_components",
+    "sample",
+    "specimen",
+    "image_acquisition"
+  ],
+  "definitions": {
+    "OrganisationURL": {
+      "title": "OrganisationURL",
+      "description": "URL to a public registry containing organisation information. ROR recommended",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ]
+    },
+    "bia_rembi_models__study__OrganisationInfo": {
+      "title": "OrganisationInfo",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "bia_rembi_models__study__Author": {
+      "title": "Author",
+      "type": "object",
+      "properties": {
+        "last_name": {
+          "title": "Last Name",
+          "type": "string"
+        },
+        "first_name": {
+          "title": "First Name",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string"
+        },
+        "orcid": {
+          "title": "Orcid",
+          "type": "string"
+        },
+        "affiliation": {
+          "title": "Affiliation",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrganisationURL"
+            },
+            {
+              "$ref": "#/definitions/bia_rembi_models__study__OrganisationInfo"
+            }
+          ]
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_name",
+        "first_name",
+        "affiliation"
+      ]
+    },
+    "License": {
+      "title": "License",
+      "description": "The license under which the data are available.",
+      "type": "object",
+      "properties": {}
+    },
+    "GrantReference": {
+      "title": "GrantReference",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "funder": {
+          "title": "Funder",
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "funder"
+      ]
+    },
+    "Funding": {
+      "title": "Funding",
+      "type": "object",
+      "properties": {
+        "funding_statement": {
+          "title": "Funding Statement",
+          "type": "string"
+        },
+        "grant_references": {
+          "title": "Grant References",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GrantReference"
+          }
+        }
+      },
+      "required": [
+        "funding_statement"
+      ]
+    },
+    "Publication": {
+      "title": "Publication",
+      "type": "object",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "authors": {
+          "title": "Authors",
+          "type": "string"
+        },
+        "doi": {
+          "title": "Doi",
+          "type": "string"
+        },
+        "year": {
+          "title": "Year",
+          "type": "string"
+        },
+        "pubmed_id": {
+          "title": "Pubmed Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
+    "Link": {
+      "title": "Link",
+      "type": "object",
+      "properties": {
+        "link_url": {
+          "title": "Link Url",
+          "type": "string"
+        },
+        "link_type": {
+          "title": "Link Type",
+          "type": "string"
+        },
+        "link_description": {
+          "title": "Link Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "link_url"
+      ]
+    },
+    "Study": {
+      "title": "Study",
+      "description": "General study information",
+      "type": "object",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "private_until_date": {
+          "title": "Private Until Date",
+          "type": "string",
+          "format": "date"
+        },
+        "keywords": {
+          "title": "Keywords",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authors": {
+          "title": "Authors",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bia_rembi_models__study__Author"
+          }
+        },
+        "license": {
+          "$ref": "#/definitions/License"
+        },
+        "funding": {
+          "$ref": "#/definitions/Funding"
+        },
+        "publications": {
+          "title": "Publications",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Publication"
+          }
+        },
+        "links": {
+          "title": "Links",
+          "default": [],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Link"
+          }
+        },
+        "acknowledgements": {
+          "title": "Acknowledgements",
+          "type": "string"
+        },
+        "rembi_version": {
+          "title": "Rembi Version",
+          "enum": [
+            "1.5"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "private_until_date",
+        "keywords",
+        "authors",
+        "rembi_version"
+      ]
+    },
+    "StudyComponent": {
+      "title": "StudyComponent",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "rembi_version": {
+          "title": "Rembi Version",
+          "enum": [
+            "1.5"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "rembi_version"
+      ]
+    },
+    "Organism": {
+      "title": "Organism",
+      "description": "Species.",
+      "type": "object",
+      "properties": {
+        "scientific_name": {
+          "title": "Scientific Name",
+          "type": "string"
+        },
+        "common_name": {
+          "title": "Common Name",
+          "type": "string"
+        },
+        "ncbi_taxon": {
+          "title": "Ncbi Taxon",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scientific_name",
+        "ncbi_taxon"
+      ]
+    },
+    "Biosample": {
+      "title": "Biosample",
+      "type": "object",
+      "properties": {
+        "organism": {
+          "$ref": "#/definitions/Organism"
+        },
+        "biological_entity": {
+          "title": "Biological Entity",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "intrinsic_variables": {
+          "title": "Intrinsic Variables",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extrinsic_variables": {
+          "title": "Extrinsic Variables",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "experimental_variables": {
+          "title": "Experimental Variables",
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "organism",
+        "biological_entity"
+      ]
+    },
+    "Specimen": {
+      "title": "Specimen",
+      "description": "How the sample was grown or cultured and prepared for imaging.",
+      "type": "object",
+      "properties": {
+        "sample_preparation": {
+          "title": "Sample Preparation",
+          "type": "string"
+        },
+        "growth_protocol": {
+          "title": "Growth Protocol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sample_preparation"
+      ]
+    },
+    "ImagingMethod": {
+      "title": "ImagingMethod",
+      "description": "What method was used to capture images.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "ontology_name": {
+          "title": "Ontology Name",
+          "type": "string"
+        },
+        "ontology_id": {
+          "title": "Ontology Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "ontology_name",
+        "ontology_id"
+      ]
+    },
+    "ImageAcquisition": {
+      "title": "ImageAcquisition",
+      "type": "object",
+      "properties": {
+        "imaging_method": {
+          "$ref": "#/definitions/ImagingMethod"
+        },
+        "imaging_instrument": {
+          "title": "Imaging Instrument",
+          "type": "string"
+        },
+        "image_acquisition_parameters": {
+          "title": "Image Acquisition Parameters",
+          "type": "string"
+        }
+      },
+      "required": [
+        "imaging_method",
+        "imaging_instrument",
+        "image_acquisition_parameters"
+      ]
+    },
+    "ImageCorrelation": {
+      "title": "ImageCorrelation",
+      "description": "How images from the same correlative study are linked",
+      "type": "object",
+      "properties": {
+        "spatial_and_temporal_alignment": {
+          "title": "Spatial And Temporal Alignment",
+          "type": "string"
+        },
+        "fiducials_used": {
+          "title": "Fiducials Used",
+          "type": "string"
+        },
+        "transformation_matrix": {
+          "title": "Transformation Matrix",
+          "type": "string"
+        }
+      },
+      "required": [
+        "spatial_and_temporal_alignment",
+        "fiducials_used",
+        "transformation_matrix"
+      ]
+    },
+    "ImageAnalysis": {
+      "title": "ImageAnalysis",
+      "type": "object",
+      "properties": {
+        "analysis_overview": {
+          "title": "Analysis Overview",
+          "type": "string"
+        }
+      },
+      "required": [
+        "analysis_overview"
+      ]
+    },
+    "bia_mifa_models__pydantic_model__bia_mifa_models_pydantic__OrganisationInfo": {
+      "title": "OrganisationInfo",
+      "description": "Information about the organisation the author is affiliated with",
+      "type": "object",
+      "properties": {
+        "organisation_name": {
+          "title": "Organisation Name",
+          "description": "Organisation name",
+          "type": "string"
+        },
+        "address": {
+          "title": "Address",
+          "description": "Organisation address",
+          "type": "string"
+        },
+        "ror_id": {
+          "title": "Ror Id",
+          "description": "Identifier for the Research Organization Registry",
+          "type": "string"
+        }
+      },
+      "required": [
+        "organisation_name"
+      ],
+      "additionalProperties": false
+    },
+    "bia_mifa_models__pydantic_model__bia_mifa_models_pydantic__Author": {
+      "title": "Author",
+      "description": "Information about the authors",
+      "type": "object",
+      "properties": {
+        "organisation": {
+          "title": "Organisation",
+          "description": "a collection of the name and address of organisations authors are affiliated with",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bia_mifa_models__pydantic_model__bia_mifa_models_pydantic__OrganisationInfo"
+          }
+        },
+        "author_first_name": {
+          "title": "Author First Name",
+          "description": "First name for an author",
+          "type": "string"
+        },
+        "author_last_name": {
+          "title": "Author Last Name",
+          "description": "Last name for an author",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "description": "Email address of a person",
+          "pattern": "^\\S+@[\\S+\\.]+\\S+",
+          "type": "string"
+        },
+        "orcid_id": {
+          "title": "Orcid Id",
+          "description": "A unique identifier for an author",
+          "type": "string"
+        },
+        "role": {
+          "title": "Role",
+          "description": "Role of the author when creating the dataset",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "author_first_name",
+        "author_last_name"
+      ],
+      "additionalProperties": false
+    },
+    "AnnotationType": {
+      "title": "AnnotationType",
+      "description": "An enumeration.",
+      "enum": [
+        "class_labels",
+        "bounding_boxes",
+        "counts",
+        "derived_annotations",
+        "geometrical_annotations",
+        "graphs",
+        "point_annotations",
+        "segmentation_mask",
+        "tracks",
+        "weak_annotations",
+        "other"
+      ],
+      "type": "string"
+    },
+    "FileLevelMetadata": {
+      "title": "FileLevelMetadata",
+      "description": "metadata atributes that must be detailed at the file level",
+      "type": "object",
+      "properties": {
+        "annotation_id": {
+          "title": "Annotation Id",
+          "description": "The identifier for the annotation",
+          "type": "string"
+        },
+        "annotation_type": {
+          "description": "Annotation type, for example class labels, segmentation masks, counts...",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnnotationType"
+          }
+        },
+        "source_image_id": {
+          "title": "Source Image Id",
+          "description": "identifier of the source image from which the annotation originated",
+          "type": "string"
+        },
+        "transformations": {
+          "title": "Transformations",
+          "description": "Any transformations required to link the images to the annotations",
+          "type": "string"
+        },
+        "spatial_information": {
+          "title": "Spatial Information",
+          "description": "Spatial information for non-pixel annotations",
+          "type": "string"
+        },
+        "annotation_creation_time": {
+          "title": "Annotation Creation Time",
+          "description": "Date and time when the annotation was created",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "annotation_id",
+        "source_image_id"
+      ],
+      "additionalProperties": false
+    },
+    "Annotations": {
+      "title": "Annotations",
+      "description": "A set of annotations for an AI-ready dataset",
+      "type": "object",
+      "properties": {
+        "authors": {
+          "title": "Authors",
+          "description": "a collection of the authors of a study",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/bia_mifa_models__pydantic_model__bia_mifa_models_pydantic__Author"
+          }
+        },
+        "file_metadata": {
+          "title": "File Metadata",
+          "description": "a collection of the file level metadata for each annotation",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileLevelMetadata"
+          }
+        },
+        "annotation_overview": {
+          "title": "Annotation Overview",
+          "description": "Short descriptive summary indicating the type of annotation and how it was generated",
+          "type": "string"
+        },
+        "annotation_type": {
+          "description": "Annotation type, for example class labels, segmentation masks, counts...",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnnotationType"
+          }
+        },
+        "annotation_method": {
+          "title": "Annotation Method",
+          "description": "Description of how the annotations were created. For example, were the annotations crowdsourced or expertly annotated,  produced by  a human or software, what software was used, when were the annotations created,  protocols used for consensus and quality assurance",
+          "type": "string"
+        },
+        "annotation_criteria": {
+          "title": "Annotation Criteria",
+          "description": "Rules used to generate annotations",
+          "type": "string"
+        },
+        "annotation_coverage": {
+          "title": "Annotation Coverage",
+          "description": "Which images from the dataset were annotated, and what percentage of the data has been annotated from what is available",
+          "type": "string"
+        },
+        "annotation_confidence_level": {
+          "title": "Annotation Confidence Level",
+          "description": "Confidence on annotation accuracy",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation_overview",
+        "annotation_method"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

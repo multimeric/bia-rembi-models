@@ -11,6 +11,11 @@
       "title": "Description",
       "type": "string"
     },
+    "private_until_date": {
+      "title": "Private Until Date",
+      "type": "string",
+      "format": "date"
+    },
     "keywords": {
       "title": "Keywords",
       "type": "array",
@@ -50,15 +55,43 @@
     "acknowledgements": {
       "title": "Acknowledgements",
       "type": "string"
+    },
+    "rembi_version": {
+      "title": "Rembi Version",
+      "enum": [
+        "1.5"
+      ],
+      "type": "string"
     }
   },
   "required": [
     "title",
     "description",
+    "private_until_date",
     "keywords",
-    "authors"
+    "authors",
+    "rembi_version"
   ],
   "definitions": {
+    "OrganisationURL": {
+      "title": "OrganisationURL",
+      "description": "URL to a public registry containing organisation information. ROR recommended",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ]
+    },
     "OrganisationInfo": {
       "title": "OrganisationInfo",
       "type": "object",
@@ -74,20 +107,6 @@
       },
       "required": [
         "name"
-      ]
-    },
-    "OrganisationURL": {
-      "title": "OrganisationURL",
-      "description": "URL to a public registry containing organisation information. ROR recommended",
-      "type": "object",
-      "properties": {
-        "url": {
-          "title": "Url",
-          "type": "string"
-        }
-      },
-      "required": [
-        "url"
       ]
     },
     "Author": {
@@ -114,10 +133,10 @@
           "title": "Affiliation",
           "anyOf": [
             {
-              "$ref": "#/definitions/OrganisationInfo"
+              "$ref": "#/definitions/OrganisationURL"
             },
             {
-              "$ref": "#/definitions/OrganisationURL"
+              "$ref": "#/definitions/OrganisationInfo"
             }
           ]
         },
@@ -134,14 +153,9 @@
     },
     "License": {
       "title": "License",
+      "description": "The license under which the data are available.",
       "type": "object",
-      "properties": {
-        "help_text": {
-          "title": "Help Text",
-          "default": "The license under which the data are available.",
-          "type": "string"
-        }
-      }
+      "properties": {}
     },
     "GrantReference": {
       "title": "GrantReference",
@@ -208,8 +222,7 @@
         }
       },
       "required": [
-        "title",
-        "authors"
+        "title"
       ]
     },
     "Link": {
@@ -218,6 +231,10 @@
       "properties": {
         "link_url": {
           "title": "Link Url",
+          "type": "string"
+        },
+        "link_type": {
+          "title": "Link Type",
           "type": "string"
         },
         "link_description": {

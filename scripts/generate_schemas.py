@@ -6,6 +6,8 @@ from bia_rembi_models.specimen import Specimen
 from bia_rembi_models.acquisition import ImageAcquisition
 from bia_rembi_models.correlation import ImageCorrelation
 from bia_rembi_models.analysis import ImageAnalysis
+from bia_rembi_models.study_component import StudyComponent
+from bia_rembi_models.rembi_study import REMBIStudy
 
 
 def main():
@@ -18,7 +20,9 @@ def main():
         Specimen,
         ImageAcquisition,
         ImageCorrelation,
-        ImageAnalysis
+        ImageAnalysis,
+        REMBIStudy,
+        StudyComponent
     ]
 
     for obj in objects_to_write:
